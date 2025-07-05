@@ -1,13 +1,9 @@
-parameter MEM_SIZE_BYTES = 4096; // needs to be a power of 2
-parameter DATA_WIDTH_BYTES = 4;
-parameter ADDR_WIDTH = $clog2(MEM_SIZE_BYTES);
-
-module driver();
+module mem_tb();
     reg[7:0] data_w [DATA_WIDTH_BYTES-1:0], data_r [DATA_WIDTH_BYTES-1:0];
     reg[ADDR_WIDTH-1:0] addr;
-    reg clk, w_bar[DATA_WIDTH_BYTES-1:0];
+    reg clk, wenableL[DATA_WIDTH_BYTES-1:0];
     reg [7:0] dump [4095:0];
-    reg rst_bar;
+    reg rstL;
     int i;
 
     initial begin : Initialise_Clock
@@ -15,12 +11,12 @@ module driver();
         forever #5 clk = ~clk;
     end
 
-    initial begin : Initialise_Processor
+    initial begin : Initialise_Writing
         $readmemh("file.hex", dump, 0, 9);
-        w_bar = {0,0,0,0};
+        wenableL = {0,0,0,0};
         addr = 0;
         i = 0;
-        rst_bar = 1;
+        rstL = 1;
     end
 
 
@@ -30,10 +26,9 @@ module driver();
             addr <= i[ADDR_WIDTH-1:0];
             i <= i + 4;
         end else begin
-            w_bar <= {1,1,1,1};
+            wenableL <= {1,1,1,1};
         end
     end
-    
 
     always_ff @ (posedge clk) begin : Display_Memory
             $display("i: %h", i);
@@ -42,11 +37,11 @@ module driver();
 
     mem mem_uut ( 
         .clk(clk),
-        .w_bar(w_bar),
+        .wenableL(wenableL),
         .data_w(data_w),
         .addr(addr),
         .data_r(data_r),
-        .rst_bar(rst_bar)
+        .rstL(rstL)
     );
 endmodule
 

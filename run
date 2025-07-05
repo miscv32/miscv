@@ -1,3 +1,3 @@
-if verilator --binary --quiet -Wall driver.sv mem.sv -MAKEFLAGS -s; then
+if verilator --binary --quiet -Wall mem_tb.sv mem.sv params.sv -MAKEFLAGS -s; then
     timeout 0.01 ./obj_dir/Vdriver > ./log.txt
 fi
