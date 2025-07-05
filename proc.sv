@@ -32,5 +32,4 @@ module proc(
         .rstL(regs_rstL)
     );
 
-
 endmodule

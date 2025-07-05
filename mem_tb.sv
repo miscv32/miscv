@@ -12,7 +12,7 @@ module mem_tb();
     end
 
     initial begin : Initialise_Writing
-        $readmemh("file.hex", dump, 0, 9);
+        $readmemh("mem_tb.hex", dump, 0, 9);
         wenableL = {0,0,0,0};
         addr = 0;
         i = 0;
