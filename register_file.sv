@@ -6,7 +6,7 @@ module register_file
     input [WORD_SIZE-1:0] data_w [NUM_REGS-1:0],
     output reg [WORD_SIZE-1:0] data_r [NUM_REGS-1:0]
 );
-    reg [WORD_SIZE-1:0] regs [NUM_REGS-1:0];
+    reg signed [WORD_SIZE-1:0] regs [NUM_REGS-1:0];
     
     always_ff @(posedge clk) begin
         if (~rstL) begin
