@@ -1,7 +1,7 @@
 module regs_tb();
-    reg[WORD_SIZE-1:0] data_w [NUM_REGS-1:0], data_r [NUM_REGS-1:0];
-    reg clk, wenableL[NUM_REGS-1:0];
-    reg [WORD_SIZE-1:0] dump [NUM_REGS-1:0];
+    reg[WORD_SIZE-1:0] data_w [0:NUM_REGS-1], data_r [0:NUM_REGS-1];
+    reg clk, wenableL[0:NUM_REGS-1];
+    reg [WORD_SIZE-1:0] dump [0:NUM_REGS-1];
     reg rstL;
     int i;
 
@@ -34,7 +34,7 @@ module regs_tb();
             $display("0: %h %h %h %h 4: %h %h %h %h 8: %h %h %h %h 12: %h %h %h %h 16: %h %h %h %h 20: %h %h %h %h 24: %h %h %h %h 28: %h %h %h %h", 
             data_r[0], data_r[1], data_r[2], data_r[3], 
             data_r[4], data_r[5], data_r[6] , data_r[7], 
-            data_r[9], data_r[9], data_r[10], data_r[11], 
+            data_r[8], data_r[9], data_r[10], data_r[11], 
             data_r[12], data_r[13], data_r[14], data_r[15], 
             data_r[16], data_r[17], data_r[18], data_r[19],
             data_r[20], data_r[21], data_r[22], data_r[23],

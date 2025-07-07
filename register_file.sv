@@ -8,7 +8,6 @@ module register_file
 );
     reg [WORD_SIZE-1:0] regs [NUM_REGS-1:0];
     
-
     always_ff @(posedge clk) begin
         if (~rstL) begin
             for (int i = 0; i < NUM_REGS; i++) begin

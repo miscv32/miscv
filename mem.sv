@@ -12,9 +12,6 @@ module mem
 
     always_ff @(posedge clk) begin
         if (~rstL) begin
-            for (int i = 0; i < MEM_SIZE_BYTES; i++) begin
-                    mem[i] <= 0;
-            end
             for (int i = 0; i < DATA_WIDTH_BYTES; i++) begin
                 data_r[i] <= 0;
             end 
